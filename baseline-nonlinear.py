@@ -400,13 +400,10 @@ def run():
     print('average : acc {:.4f} p {:.4f} r {:.4f} f1 {:.4f}\n'.format(acc_pos, p_pos, r_pos, f1_pos))
     print_time()
 
-def main():
-    opt.scope='Ind_BiLSTM_1'
-    run()
 
-    opt.scope='Ind_BiLSTM_2'
-    run()
 
 
 if __name__ == '__main__':
+    opt.scope = 'Ind_BiLSTM_1'
+
     run()

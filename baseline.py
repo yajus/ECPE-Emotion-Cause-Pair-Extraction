@@ -7,7 +7,7 @@ import os,sys
 from data_process import *
 from torch.utils.data import Dataset, DataLoader
 import torch.nn.functional as F
-from sklearn.utils.multiclass import type_of_target
+os.environ["CUDA_VISIBLE_DEVICES"] = "4,5,6,7"
 #### setting agrparse
 parser = argparse.ArgumentParser(description='Training')
 ##### input
@@ -36,7 +36,7 @@ parser.add_argument('--usegpu', type=bool, default=True, help='gpu')
 opt = parser.parse_args()
 if opt.usegpu and torch.cuda.is_available():    
     use_gpu=True
-os.environ["CUDA_VISIBLE_DEVICES"] = "6,7"
+
 def print_training_info():
     print('\n\n>>>>>>>>>>>>>>>>>>>>TRAINING INFO:\n')
     print('batch-{}, lr-{}, kb1-{}, kb2-{}, l2_reg-{}'.format(
@@ -105,7 +105,13 @@ class attention(torch.nn.Module):
         self.sh2 = 2 * opt.n_hidden
         self.linearlayer1 = nn.Linear(self.sh2,self.sh2).cuda()
         self.linearlayer2 = nn.Linear(self.sh2,1,bias=False).cuda()
-
+        # self.w1 = get_weight_varible([self.sh2, self.sh2])
+        # self.b1 = get_weight_varible([self.sh2])
+        # self.w2 = get_weight_varible([self.sh2, 1])
+        # if use_gpu:
+        #     self.w1= self.w1.cuda()
+        #     self.b1 = self.b1.cuda()
+        #     self.w2 = self.w2.cuda()
 
 
     def forward(self,inputs,sen_len):
@@ -376,13 +382,8 @@ def run():
     print('average : acc {:.4f} p {:.4f} r {:.4f} f1 {:.4f}\n'.format(acc_pos, p_pos, r_pos, f1_pos))
     print_time()
 
-def main():
-    opt.scope='Ind_BiLSTM_1'
-    run()
-
-    opt.scope='Ind_BiLSTM_2'
-    run()
 
 
 if __name__ == '__main__':
+    opt.scope = 'Ind_BiLSTM_1'
     run()

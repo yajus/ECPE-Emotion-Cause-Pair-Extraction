@@ -14,7 +14,8 @@ input_data = np.append(input_data,input_data,axis=0)
 input_data = torch.FloatTensor(input_data)
 length = [3,2]
 a=torch.zeros([len(length),4,2])
-for i in range(len(length)):
+for i in range(len(
+        length)):
     a[i,0:length[i],:]=1
 ret = a.float()
 ret = torch.FloatTensor(ret)

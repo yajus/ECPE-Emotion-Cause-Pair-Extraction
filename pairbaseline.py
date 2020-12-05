@@ -364,5 +364,5 @@ def run():
 
 
 if __name__ == '__main__':
-    opt.scope='RNN'
+    opt.scope='P_emotion_1'
     run()
