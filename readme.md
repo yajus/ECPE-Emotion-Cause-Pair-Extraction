@@ -11,7 +11,7 @@ Rui Xia and Zixiang Ding. Emotion-Cause Pair Extraction: A New Task to Emotion A
 
 ## Usage
 Step1:
-run baseline.py/baseline-cause.py/baseline-emotion for cause/emotion extraction
+run baseline.py/P_cause.py/P_emotion.py for cause/emotion extraction
 
 Step2:
 run pairbaseline.py for cause-emotion pair analyse
